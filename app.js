@@ -1,7 +1,19 @@
 const http = require("http")
 const fs = require("fs")
+const queryString = require ("querystring")
+const nodemailer = require("nodemailer")
 
 const port = 4000
+
+const miniOutlook= nodemailer.createTransport({
+	host: smtp.gmail.com,
+	auth : {
+			user:"micorreo@gmail.com",
+			pass:"miclaveresegura",
+			port: 465
+	}
+	
+})
 
 http.createServer((request, response) => {
 		
@@ -14,13 +26,25 @@ http.createServer((request, response) => {
 
 		console.log(`Usted quiere este recurso: ${file}`)
 
-		if( file == "/enviar" ){
+		if( file == "/enviar" && request.method=="POST"){
 
 			request.on("data", function(form){
+				let datos = form.toString()
+				let objeto= queryString.parse(datos)
+
+				console.log(objeto)
+
+				miniOutlook.sendMail({
+					from: objeto.correo,
+					to: "micorreo@gmail.com",
+					subject: objeto.asunto,
+					text: objeto.mensaje
+				})
 				
-				response.end( form )
+				response.end("MIRA LA CONSOLA")
 
 			})
+
 
 
 		}

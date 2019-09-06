@@ -13,27 +13,55 @@
   <body class="container-fluid">
     <h1>Introducción al Mundo Backend</h1>
     <section class="row">
-      <div class="col-sm-8 col-sm-offset-2">
+      <form action="http://127.0.0.1:4000/enviar" method="post">
+        <!--Nombre-->
 
-        <form action="http://127.0.0.1:4000/enviar" method="post">
+          <div class="col">
+            <div class="col">
+              <label for="exampleInputEmail1">Nombre/s</label>
+              <input type="text" name="nombre" class="form-control" placeholder="Introduzca Nombre/s">
+            </div>
+        
+        <!--Email-->
+          <div class="col">
+        
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" name="correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
+         <!--Asunto-->
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="clave" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
+              <label for="exampleFormControlSelect1">Asunto</label>
+              <select class="form-control" name="asunto">
+                <option>Consulta</option>
+                <option>Reclamo</option>
+                <option>Devolución</option>
+                <option>Otros</option>
+              </select>
+            </div>
+          <!--Mensaje-->
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Mensaje</label>
+              <textarea class="form-control" name="mensaje" rows="5"></textarea>
+            </div>
+                   
+
+
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
-      </div>      
-    </section>
+      </div>   
+ </section>
+
+    <section>
+
+   
+
+
+</form>
+
+  </section>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
