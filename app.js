@@ -8,8 +8,8 @@ const port = 4000
 const miniOutlook= nodemailer.createTransport({
 	host: smtp.gmail.com,
 	auth : {
-			user:"micorreo@gmail.com",
-			pass:"miclaveresegura",
+			user:"liam.triaca79@gmail.com",
+			pass:"Qazwsx/()",
 			port: 465
 	}
 	
@@ -36,7 +36,7 @@ http.createServer((request, response) => {
 
 				miniOutlook.sendMail({
 					from: objeto.correo,
-					to: "micorreo@gmail.com",
+					to: "liam.triaca79@gmail.com",
 					subject: objeto.asunto,
 					text: objeto.mensaje
 				})
