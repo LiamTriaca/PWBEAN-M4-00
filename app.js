@@ -6,13 +6,21 @@ const nodemailer = require("nodemailer")
 const port = 4000
 
 const miniOutlook= nodemailer.createTransport({
-	host: "smtp.gmail.com",
+	host: process.env.SMTP,
 	auth : {
-			user:"triacaliam@gmail.com",
-			pass:"yfzokupcycewnclq",
-			port: 465
+			user:process.env.USER,
+			pass:process.env.PASS,
+			port:process.env.MPORT
 	}
 	
+})
+
+miniOutlook.verify(function(error,success){
+	if (error) {
+		console.log ("Error, GMail no está disponible")
+	} else {
+		console.log("miniOutlook listo para enviar emails")
+	}
 })
 
 http.createServer((request, response) => {
@@ -48,9 +56,15 @@ http.createServer((request, response) => {
 					replyTo : objeto.correo,
 					subject: objeto.asunto,
 					html: cuerpo
+				}, function (error,success){
+					if (error){
+						response.end ("Mensaje NO enviada :.(")
+					} else {
+						response.end ("Gracias por su Mensaje, será constestado a la brevedad :D")
+					}
+
 				})
 				
-				response.end("MIRA LA CONSOLA")
 
 			})
 
