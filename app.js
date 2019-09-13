@@ -6,10 +6,10 @@ const nodemailer = require("nodemailer")
 const port = 4000
 
 const miniOutlook= nodemailer.createTransport({
-	host: smtp.gmail.com,
+	host: "smtp.gmail.com",
 	auth : {
-			user:"liam.triaca79@gmail.com",
-			pass:"Qazwsx/()",
+			user:"triacaliam@gmail.com",
+			pass:"yfzokupcycewnclq",
 			port: 465
 	}
 	
@@ -34,11 +34,20 @@ http.createServer((request, response) => {
 
 				console.log(objeto)
 
+
+				let cuerpo =  `<h1> Contacto Desde Eant Mailer </h1>`
+				+ `<p>Datos del consultante</p>`
+				+ `<p>Nombre: ${objeto.nombre} </p>`
+				+ `<p>E-Mail: ${objeto.correo} </p>`
+				+ `<p>Asunto: ${objeto.asunto} </p>`
+				+ `<p>Mensaje: <blockquote> ${objeto.mensaje} </blockquote> </p>`
+
 				miniOutlook.sendMail({
 					from: objeto.correo,
-					to: "liam.triaca79@gmail.com",
+					to: "triacaliam@gmail.com",
+					replyTo : objeto.correo,
 					subject: objeto.asunto,
-					text: objeto.mensaje
+					html: cuerpo
 				})
 				
 				response.end("MIRA LA CONSOLA")
